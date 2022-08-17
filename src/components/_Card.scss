@@ -1,0 +1,76 @@
+.cardWrapper {
+  position: relative;
+
+  .sunIcon {
+    color: orange;
+    font-size: 20rem;
+    position: absolute;
+    top: -35%;
+    left: -9%;
+    z-index: 0;
+    opacity: .8;
+  }
+}
+
+.cardContainer {
+  display: flex;
+  margin: 2rem;
+  height: 33rem;
+  width: 50rem;
+  background-color: #efefef;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  border-radius: 15px;
+
+  .card {
+    height: 30rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    z-index: 1;
+  }
+
+  .cardLeft {
+    align-items: center;
+    box-shadow: 0 0 5px #aaa;
+    width: 28rem;
+    height: 25rem;
+    margin-left: 1.5rem;
+  }
+
+  .cardRight {
+    margin-left: 2rem;
+    height: 80%;
+    width: 15rem;
+  }
+}
+
+.cold {
+  color: rgb(68, 164, 249);
+}
+
+.hot {
+  color: rgb(228, 86, 86);
+}
+
+@media only screen and (max-width:500px) {
+  .cardContainer {
+    width: 100vw;
+    margin: 2rem 0;
+
+    .card {
+      width: 100%;
+    }
+
+    .cardLeft {
+      width: 70%;
+    }
+    .cardRight {
+      width: 30%;
+    }
+  }
+}
