@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSun,
   faMoon,
+  faCloudSun,
+  faCloudMoon,
   faCloud,
   faCloudShowersHeavy,
   faCloudRain,
@@ -24,8 +26,8 @@ function WeatherIcon(props) {
   const iconStorage = [
     { "01d": faSun, classColor: "orange" },
     { "01n": faMoon, classColor: "lightGrey" },
-    { "02d": faCloud, classColor: "grey" },
-    { "02n": faCloud, classColor: "darkGrey" },
+    { "02d": faCloudSun, classColor: "grey" },
+    { "02n": faCloudMoon, classColor: "darkGrey" },
     { "03d": faCloud, classColor: "grey" },
     { "03n": faCloud, classColor: "darkGrey" },
     { "04d": faCloud, classColor: "grey" },

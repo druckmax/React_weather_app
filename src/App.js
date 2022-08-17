@@ -20,14 +20,20 @@ function App() {
         const { latitude: lat, longitude: lng } = pos.coords;
 
         // fetch the city with reverse geocoding
+        const requestOptions = {
+          method: "GET",
+        };
+
         const resGeo = await fetch(
-          `http://api.positionstack.com/v1/reverse?access_key=${process.env.REACT_APP_GEOCODE_KEY}&query=${lat},${lng}&limit=1`
+          `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${process.env.REACT_APP_GEOCODE_KEY2}`,
+          requestOptions
         );
 
         if (!resGeo.ok) throw new Error("Problem getting location data");
         const dataGeo = await resGeo.json();
 
-        const city = dataGeo.data[0].administrative_area;
+        // Get city name from returned object
+        const city = dataGeo.features[0].properties.city
 
         // fetch weather data with cityname
         const res = await fetch(
