@@ -1,10 +1,14 @@
 import Card from "./components/Card";
+import LoadingSpinner from "./components/LoadingSpinner";
+import ErrorWindow from "./components/ErrorWindow";
 
 import React, { useEffect, useState } from "react";
 
 function App() {
   const [value, setValue] = useState("");
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDenied, setIsDenied] = useState(false);
 
   const getPosition = function () {
     return new Promise(function (resolve, reject) {
@@ -33,20 +37,28 @@ function App() {
         const dataGeo = await resGeo.json();
 
         // Get city name from returned object
-        const city = dataGeo.features[0].properties.city
+        const city = dataGeo.features[0].properties.city;
 
         // fetch weather data with cityname
         const res = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
         );
+
+        if (!res.ok) throw new Error("Problem getting the weather data");
         const asyncData = await res.json();
+
+        // console.log(asyncData)
+
         setData(asyncData);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
+        setIsDenied(true);
         return console.error(error);
       }
     };
     getUserLocation();
-  }, []);
+  }, [setData, setIsLoading, setIsDenied]);
 
   // Get user input
   const getInputValue = (e) => setValue(e.target.value);
@@ -63,6 +75,7 @@ function App() {
 
   return (
     <div className="wrapper">
+      {isDenied && <ErrorWindow text="Accessing your location was denied" />}
       <h1>Weather App</h1>
       <form onSubmit={getWeatherInfo} className="buttonGroup">
         <input
@@ -74,7 +87,7 @@ function App() {
         />
         <button type="submit">Get Weather Data</button>
       </form>
-      <Card data={data} />
+      {isLoading ? <LoadingSpinner /> : <Card data={data} />}
     </div>
   );
 }

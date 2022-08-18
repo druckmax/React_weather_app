@@ -1,0 +1,41 @@
+.errorWindow {
+  width: 50rem;
+  height: 6rem;
+  background-color: rgba(50, 176, 50, 0.527);
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 5px 5px rgba(34, 34, 34, 0.224);
+  top: -20rem;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 4s ease-in-out 1 both;
+}
+
+@keyframes fadeIn {
+  0% {
+    top: -20rem;
+  }
+  20% {
+    top: 0;
+  }
+  80% {
+    top: 0;
+  }
+  100% {
+    top: -20rem;
+  }
+  
+}
+
+@media only screen and (max-width: 500px) {
+  .errorWindow {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+}
