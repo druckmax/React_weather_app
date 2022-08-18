@@ -10,7 +10,7 @@ import WeatherIcon from "./WeatherIcon";
 function Card(props) {
 
   const {
-    name = "Your City",
+    name = "City",
     main: {
       temp = 0.0,
       feels_like = 0.0,
@@ -19,7 +19,7 @@ function Card(props) {
       temp_min = 0.0,
       temp_max = 0.0,
     } = {},
-    sys: { country= "Your Country" } = {},
+    sys: { country= "Country" } = {},
     weather = [{icon: '01d'}],
   } = props.data;
 
